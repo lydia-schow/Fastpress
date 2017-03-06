@@ -33,6 +33,25 @@ app.get('/pages', (reqest, response) => {
     })
 })
 
+app.get('/pages/create', (request, response) => {
+  response.render('page-create');
+});
+
+app.post('/pages/create', (request, response) => {
+  Page.create({
+    title: request.body.title,
+    body: request.body.body
+  })
+    .then( page => {
+      console.log(`Created page ${page._id}`);
+      response.redirect(`/pages/${page._id}`);
+    })
+    .catch(error => {
+      console.error(error);
+      response.status(500).send('500 - Server error');
+    });
+});
+
 app.get('/pages/:pageId', (request, response) => {
   let pageTitle;
   Page.findById(request.params.pageId)
@@ -51,21 +70,6 @@ app.get('/pages/:pageId', (request, response) => {
       response.status(500).send('500 - Server error');
     })
     // TODO: 404 for non-existant pages
-});
-
-app.post('/pages', (request, response) => {
-  Page.create({
-    title: request.body.title,
-    body: request.body.body
-  })
-    .then( page => {
-      console.log(`Created page ${page._id}`);
-      response.redirect(`/response/${page._id}`);
-    })
-    .catch(error => {
-      console.error(error);
-      response.status(500).send('500 - Server error');
-    });
 });
 
 var port = process.env.PORT || 3000;
