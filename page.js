@@ -25,7 +25,7 @@ exports.createView = (request, response) => {
 
 exports.view = (request, response) => {
   let pageTitle;
-  Page.findById(request.params.pageId)
+  Page.findById(request.params.id)
   .then(page => {
     pageTitle = page.title;
     return Promise.promisify(marked)(page.body); // promisify then invoke
