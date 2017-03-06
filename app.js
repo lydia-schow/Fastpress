@@ -1,16 +1,4 @@
-var express = require('express');
-var app = express();
+var app = require('./app-config.js');
+var port = process.env.PORT || 3000
 
-app.get('/pages/:pageId', (request, response) => {
-  console.log(`GET page ${request.params.pageId}`);
-  response.send('Request received');
-});
-
-app.post('/pages', (request, response) => {
-  console.log('POST a new page');
-  response.send('Request received');
-});
-
-app.listen( 3000, () => {
-  console.log('Listening at port 3000');
-});
+app.listen( port, () => { console.log(`Listening at port ${port}`); });
