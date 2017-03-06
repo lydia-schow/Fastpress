@@ -2,6 +2,9 @@ var Promise = require('bluebird');
 var marked = require('marked');
 var mongoose = require('mongoose');
 
+
+// Database
+
 var PageSchema = mongoose.Schema({
   title: String,
   body: String,
@@ -10,14 +13,12 @@ var PageSchema = mongoose.Schema({
 
 Page = mongoose.model( 'Page', PageSchema );
 
+
+// Routes
+
 exports.list = (reqest, response) => {
-  Page.find()
-  .then(pages => {
-    var output = 'Pages:\n';
-    pages.forEach(page => {
-      output += `<a href="/pages/${page._id}">page _id: ${page._id}</a>\n`;
-    });
-    response.send(output);
+  Page.find().then(pages => {
+    response.render('page-list', {pages: pages});
   });
 };
 
@@ -44,7 +45,7 @@ exports.view = (request, response) => {
     return Promise.promisify(marked)(page.body); // promisify then invoke
   })
   .then(html => {
-    response.render('page', {
+    response.render('page-view', {
       title: pageTitle,
       body: html
     });
