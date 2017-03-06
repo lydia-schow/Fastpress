@@ -1,7 +1,7 @@
 {
-  "name": "phonepress",
+  "name": "fastpress",
   "version": "1.0.0",
-  "description": "Build websites from any device",
+  "description": "Build websites in 5 minutes",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -17,9 +17,15 @@
     "start": "nodemon app.js"
   },
   "dependencies": {
-    "express": "~4.14.1"
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "express": "~4.14.1",
+    "marked": "^0.3.6",
+    "mongoose": "^4.8.6"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.3"
   }
 }
