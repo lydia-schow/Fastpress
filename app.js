@@ -9,6 +9,7 @@ var Page = require('./Page.js');
 
 var app = express();
 
+app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -33,12 +34,17 @@ app.get('/pages', (reqest, response) => {
 })
 
 app.get('/pages/:pageId', (request, response) => {
+  let pageTitle;
   Page.findById(request.params.pageId)
     .then(page => {
+      pageTitle = page.title;
       return Promise.promisify(marked)(page.body); // promisify then invoke
     })
     .then(html => {
-      response.send(html);
+      response.render('page', {
+        title: pageTitle,
+        body: html
+      });
     })
     .catch(error => {
       console.error(error);
