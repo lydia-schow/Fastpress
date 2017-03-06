@@ -1,6 +1,4 @@
 var mongoose = require('mongoose');
-var Promise = require('bluebird');
-var marked = require('marked');
 
 var PageSchema = mongoose.Schema({
   title: String,
@@ -8,12 +6,4 @@ var PageSchema = mongoose.Schema({
   date: { type: Date, default: Date.now }
 });
 
-var Page = mongoose.model( 'Page', PageSchema );
-
-PageSchema.method.render = () => {
-  return Promise.promisify(
-    marked(this.body)
-  );
-}
-
-module.exports = Page;
+module.exports = mongoose.model( 'Page', PageSchema );

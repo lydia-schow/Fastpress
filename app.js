@@ -1,6 +1,8 @@
+var Promise = require('bluebird');
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var marked = require('marked');
 
 var db = require('./database.js');
 var Page = require('./Page.js');
@@ -10,12 +12,17 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use( (request, response, next) => {
+  console.log(`${request.method} ${request.path} ${JSON.stringify(request.params)}`);
+  next();
+});
+
 app.get('/pages', (reqest, response) => {
   Page.find()
     .then(pages => {
-      var output = '';
+      var output = 'Pages:\n';
       pages.forEach(page => {
-        output += `\n <a href="/pages/${page._id}">page _id: ${page._id}</a>`;
+        output += `<a href="/pages/${page._id}">page _id: ${page._id}</a>\n`;
       });
       response.send(output);
     })
@@ -26,23 +33,33 @@ app.get('/pages', (reqest, response) => {
 })
 
 app.get('/pages/:pageId', (request, response) => {
-  console.log(`GET page ${request.params.pageId}`);
   Page.findById(request.params.pageId)
     .then(page => {
-      return page.render();
+      return Promise.promisify(marked)(page.body); // promisify then invoke
     })
     .then(html => {
       response.send(html);
     })
     .catch(error => {
       console.error(error);
-      response.status(500).send(error);
+      response.status(500).send('500 - Server error');
     })
+    // TODO: 404 for non-existant pages
 });
 
 app.post('/pages', (request, response) => {
-  console.log('POST a new page');
-  response.send('Request received');
+  Page.create({
+    title: request.body.title,
+    body: request.body.body
+  })
+    .then( page => {
+      console.log(`Created page ${page._id}`);
+      response.redirect(`/response/${page._id}`);
+    })
+    .catch(error => {
+      console.error(error);
+      response.status(500).send('500 - Server error');
+    });
 });
 
 var port = process.env.PORT || 3000;
