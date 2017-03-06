@@ -1,8 +1,9 @@
-# Phonepress
+# Fastpress
 
-## Build a website from your phone
+## Build a website in 5 minutes
 
-Phonepress is free, works on any device, and consumes very little cellphone data.
+Turn markdown documents into live web pages. We'll take care of the gory details.
+
 
 ## Features
 
