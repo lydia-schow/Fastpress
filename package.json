@@ -1,7 +1,7 @@
 {
   "name": "fastpress",
   "version": "1.0.0",
-  "description": "Build websites in 5 minutes",
+  "description": "Build a website in 5 minutes",
   "main": "index.js",
   "repository": {
     "type": "git",

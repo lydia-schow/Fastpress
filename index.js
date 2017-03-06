@@ -3,8 +3,9 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var path = require('path');
 
-var db = require('./database.js');
-var page = require('./page.js');
+var db = require('./database');
+var page = require('./page');
+var site = require('./site');
 
 var app = express();
 
@@ -21,6 +22,10 @@ app.use( (request, response, next) => {
   next();
 });
 
+
+// General
+
+app.get('/', site.index);
 
 // Page
 
