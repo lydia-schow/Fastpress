@@ -1,0 +1,25 @@
+{
+  "name": "phonepress",
+  "version": "1.0.0",
+  "description": "Build websites from any device",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elijah-schow/hratx25-mvp.git"
+  },
+  "author": "Elijah Schow",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/elijah-schow/hratx25-mvp/issues"
+  },
+  "homepage": "https://github.com/elijah-schow/hratx25-mvp#readme",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "~4.14.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
