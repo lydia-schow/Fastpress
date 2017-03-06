@@ -1,20 +1,6 @@
 var Promise = require('bluebird');
 var marked = require('marked');
-var mongoose = require('mongoose');
-
-
-// Database
-
-var PageSchema = mongoose.Schema({
-  title: String,
-  body: String,
-  date: { type: Date, default: Date.now }
-});
-
-Page = mongoose.model( 'Page', PageSchema );
-
-
-// Routes
+var Page = require('./models/page');
 
 exports.list = (reqest, response) => {
   Page.find().then(pages => {
@@ -52,3 +38,5 @@ exports.view = (request, response) => {
   });
   // TODO: 404 for non-existant pages
 };
+
+exports.edit = (request, response) => { response.send('Stub'); };

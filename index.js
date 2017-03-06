@@ -11,7 +11,6 @@ var app = express();
 
 
 // Config
-
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -24,25 +23,30 @@ app.use( (request, response, next) => {
 
 
 // General
-
-app.get('/', site.index);
+app.get('/', (request, response) => {
+  response.render('index');
+});
 
 // Page
-
 app.get('/pages', page.list);
 app.get('/pages/create', page.createView);
 app.post('/pages/create', page.create);
-app.get('/pages/:pageId',  page.view);
+app.post('/pages/:id/', page.edit);
+app.get('/pages/:id', page.view);
 
-// Site (TODO)
+// Site
+app.get('/sites', site.list);
+app.get('/sites/create', site.createView);
+app.post('/sites/create', site.create);
+app.post('/sites/:id/', site.edit);
+app.get('/sites/:id/', site.view);
+app.get('/sites/:id/:page', site.view);
 
 // User (TODO)
 
 // Server
-
 const port = process.env.PORT || 3000;
 const success = () => { console.log(`Listening at port ${port}`); };
 app.listen( port, success );
-
 
 // Generic Error Handling (TODO)
