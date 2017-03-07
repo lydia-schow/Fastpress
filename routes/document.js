@@ -52,14 +52,20 @@ exports.edit = (request, response) => {
 };
 
 exports.view = (request, response) => {
+  let docId;
+  let isOwner = false;
   Doc.findById(request.params.id)
   .then(doc => {
+    isOwner = doc.session === request.sessionID;
+    docId = doc._id;
     return Promise.promisify(marked)(doc.body); // promisify then invoke
   })
   .then(html => {
     response.render('document/view', {
       title: "Document",
-      html: html
+      html: html,
+      isOwner: isOwner,
+      id: docId
     });
   })
   .catch(error => {console.error(error);response.status(500).send('Internal error')});

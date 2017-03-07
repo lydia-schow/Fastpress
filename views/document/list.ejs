@@ -1,7 +1,7 @@
 <%- include('../partials/header', locals) %>
   <h1><%= title %></h1>
   <ul>
-    <li><a href="./create">CREATE ONE</a></li>
+    <li><a href="./create">Create Document</a></li>
     <% items.forEach( item => { %>
       <li>
         <a href="./<%= item._id %>">
@@ -10,4 +10,5 @@
       </li>
     <% }) %>
   </ul>
+  <small>WARNING: documents will only be editable for a short period of time.</small>
 <%- include('../partials/footer', locals) %>
