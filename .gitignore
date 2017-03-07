@@ -1,17 +1,14 @@
 ### node etc ###
-
-# Logs
+env
+data
 logs
 *.log
-
-# Runtime data
-data
 
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/
 dist/
 
-# Dependency directorys
+# Dependency directories
 # Deployed apps should consider commenting these lines out:
 # see https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
 node_modules/

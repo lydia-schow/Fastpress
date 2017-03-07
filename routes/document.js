@@ -11,7 +11,7 @@ exports.list = (request, response) => {
 };
 
 exports.createView = (request, response) => {
-  response.render('document-form', {action: 'create'});
+  response.render('document-create');
 };
 
 exports.create = (request, response) => {
@@ -31,7 +31,7 @@ exports.editView = (request, response) => {
     if(doc.session !== request.sessionID){
       return Promise.reject('You don\'t have permission to edit this document. <a href="javascript:history.back()">Back</a>');
     }
-    response.render('document-form', {action: 'edit', body: doc.body});
+    response.render('document-edit', {body: doc.body});
   })
   .catch(error => {console.error(error);response.status(500).send('Internal error')});
 };
@@ -57,7 +57,7 @@ exports.view = (request, response) => {
     return Promise.promisify(marked)(doc.body); // promisify then invoke
   })
   .then(html => {
-    response.render('view', {
+    response.render('document-view', {
       title: "Document",
       body: html
     });

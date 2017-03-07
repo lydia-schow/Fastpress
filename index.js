@@ -6,7 +6,7 @@ var session = require('express-session');
 
 var db = require('./database');
 var env = require('./env/environment');
-var page = require('./routes/page');
+
 var site = require('./routes/site');
 var doc = require('./routes/document');
 
@@ -42,22 +42,6 @@ app.post('/documents/create', doc.create);
 app.get('/documents/:id', doc.view);
 app.get('/documents/:id/edit', doc.editView);
 app.post('/documents/:id/edit', doc.edit);
-
-
-// // Page
-// app.get('/sites/:sid/pages', page.list);
-// app.get('/sites/:sid/pages/create', page.createView);
-// app.post('/sites/:sid/pages/create', page.create);
-// app.get('/sites/:sid/pages/:pid/edit', page.editView);
-// app.post('/sites/:sid/pages/:pid/edit', page.edit);
-// app.get('/sites/:sid/pages/:pid', page.view);
-//
-// // Site
-// app.get('/sites', site.list);
-// app.get('/sites/create', site.createView);
-// app.post('/sites/create', site.create);
-// app.get('/sites/:id/edit', site.editView);
-// app.post('/sites/:id/edit', site.edit);
 
 
 // Server
