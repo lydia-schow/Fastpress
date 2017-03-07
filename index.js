@@ -6,8 +6,6 @@ var session = require('express-session');
 
 var db = require('./database');
 var env = require('./env/environment');
-
-var site = require('./routes/site');
 var doc = require('./routes/document');
 
 var app = express();

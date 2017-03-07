@@ -17,33 +17,25 @@ Once the project moves into development, the press release can be used as a touc
  -->
 
 ## Heading ##
-  Phonepress
+  > Name the product in a way the reader (i.e. your target customers) will understand.
 
 ## Sub-Heading ##
-  Build a website from your phone
+  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
 
 ## Summary ##
-  Phonepress is free, works on any device, and consumes very little cellphone
-  data. Start your own website in less than 5 minutes.
+  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
 
 ## Problem ##
-  The internet is a powerful tool to make one's voice heard. But making websites
-  is inaccessible to most of the world. For example, over half the population of
-  Africa has access to internet-connected phones, but many don't have electricity,
-  desktop computers, advanced technical skill, or US dollars. Existing services,
-  like Wordpress, can be free and relatively user-friendly, but guzzle data and
-  don't work well on phones.
+  > Describe the problem your product solves.
 
 ## Solution ##
-  Let users post markdown files to Phonepress and serve them as a simple,
-  text-based websites.
+  > Describe how your product elegantly solves the problem.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
 
 ## How to Get Started ##
-  Go to Phonepress' website, start writing, and publish your site. Immediately,
-  the entire world can read what you have to say.
+  > Describe how easy it is to get started.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
