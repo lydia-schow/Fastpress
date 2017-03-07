@@ -6,6 +6,7 @@ var path = require('path');
 var db = require('./database');
 var page = require('./routes/page');
 var site = require('./routes/site');
+var doc = require('./routes/document');
 
 var app = express();
 
@@ -27,26 +28,38 @@ app.get('/', (request, response) => {
   response.render('index');
 });
 
-// Page
-app.get('/sites/:sid/pages', page.list);
-app.get('/sites/:sid/pages/create', page.createView);
-app.post('/sites/:sid/pages/create', page.create);
-app.get('/sites/:sid/pages/:pid/edit', page.editView);
-app.post('/sites/:sid/pages/:pid/edit', page.edit);
-app.get('/sites/:sid/pages/:pid', page.view);
+// Document
 
-// Site
-app.get('/sites', site.list);
-app.get('/sites/create', site.createView);
-app.post('/sites/create', site.create);
-app.get('/sites/:id/edit', site.editView);
-app.post('/sites/:id/edit', site.edit);
+app.get('/documents/', doc.list);
+app.get('/documents/create', doc.createView);
+app.post('/documents/create', doc.create);
+app.get('/documents/:id/edit', doc.editView);
+app.post('/documents/:id/edit', doc.edit);
+app.get('/documents/:id', doc.view);
+
+// // Page
+// app.get('/sites/:sid/pages', page.list);
+// app.get('/sites/:sid/pages/create', page.createView);
+// app.post('/sites/:sid/pages/create', page.create);
+// app.get('/sites/:sid/pages/:pid/edit', page.editView);
+// app.post('/sites/:sid/pages/:pid/edit', page.edit);
+// app.get('/sites/:sid/pages/:pid', page.view);
+//
+// // Site
+// app.get('/sites', site.list);
+// app.get('/sites/create', site.createView);
+// app.post('/sites/create', site.create);
+// app.get('/sites/:id/edit', site.editView);
+// app.post('/sites/:id/edit', site.edit);
+
 
 // User (TODO)
+
 
 // Server
 const port = process.env.PORT || 3000;
 const success = () => { console.log(`Listening at port ${port}`); };
 app.listen( port, success );
+
 
 // Generic Error Handling (TODO)
