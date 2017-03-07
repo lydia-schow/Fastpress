@@ -3,9 +3,14 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var SiteSchema = Schema({
-  title: String,
-  page_ids: [{type: Schema.Types.ObjectId, ref: 'Page'}],
+  name: String,
+  pages: [Schema.Types.ObjectId],
   date: { type: Date, default: Date.now }
+});
+
+SiteSchema.pre('save', next => {
+  this.pages = this.pages || [];
+  next();
 });
 
 module.exports = mongoose.model( 'Site', SiteSchema );

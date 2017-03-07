@@ -7,10 +7,10 @@
   <body>
     <h1>Pages</h1>
     <ul>
-      <li><a href="/pages/create">CREATE A PAGE</a></li>
+      <li><a href="./create">CREATE A PAGE</a></li>
       <% pages.forEach( page => { %>
         <li>
-          <a href="/pages/<%= page._id %>">
+          <a href="./<%= page._id %>">
              <%= page.title %>
           </a>
            (<%= page._id %>)

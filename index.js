@@ -4,8 +4,8 @@ var express = require('express');
 var path = require('path');
 
 var db = require('./database');
-var page = require('./page');
-var site = require('./site');
+var page = require('./routes/page');
+var site = require('./routes/site');
 
 var app = express();
 
@@ -28,19 +28,19 @@ app.get('/', (request, response) => {
 });
 
 // Page
-app.get('/pages', page.list);
-app.get('/pages/create', page.createView);
-app.post('/pages/create', page.create);
-app.post('/pages/:id/', page.edit);
-app.get('/pages/:id', page.view);
+app.get('/sites/:sid/pages', page.list);
+app.get('/sites/:sid/pages/create', page.createView);
+app.post('/sites/:sid/pages/create', page.create);
+app.get('/sites/:sid/pages/:pid/edit', page.editView);
+app.post('/sites/:sid/pages/:pid/edit', page.edit);
+app.get('/sites/:sid/pages/:pid', page.view);
 
 // Site
 app.get('/sites', site.list);
 app.get('/sites/create', site.createView);
 app.post('/sites/create', site.create);
-app.post('/sites/:id/', site.edit);
-app.get('/sites/:id/', site.view);
-app.get('/sites/:id/:page', site.view);
+app.get('/sites/:id/edit', site.editView);
+app.post('/sites/:id/edit', site.edit);
 
 // User (TODO)
 
