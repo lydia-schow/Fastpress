@@ -45,14 +45,14 @@ h1 {
   margin-bottom: .8567em; /* = 24px / 42px */
 }
 
-h1 + h2 {
-  margin-top: 1.385em;
+h2:first-child {
+  margin-top: .4635em;
 }
 
 h2 {
   font-size: 1.618em;    /* = 26px / 16px */
   line-height: 1.4em;    /* = 36px / 26px */
-  margin: .4635em 0;   /* = 12px / 26px */
+  margin: 1.385em 0 .4635em;   /* = 12px / 26px */
 }
 
 h3 {

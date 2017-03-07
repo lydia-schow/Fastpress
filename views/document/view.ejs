@@ -1,9 +1,9 @@
 <%- include('../partials/header', locals) %>
   <%- html %>
   <% if (isOwner) { %>
-    <div class="actionbar">
-      <a href="/documents/<%= id %>/edit" class="button-link">edit</a>
-      <a href="/documents/" class="button-link">documents</a>
+    <div>
+        <a href="/documents/<%= id %>/edit" class="button-link">edit</a>
+        <a href="/documents/" class="button-link">documents</a>
     </div>
   <% } %>
 <%- include('../partials/footer', locals) %>
