@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= action %> a Document</title>
+  </head>
+  <body>
+    <form action="./<%= action %>" method="post">
+      <textarea name="body" rows="8" cols="80"><% if (locals.body) { %><%= body %><% } %></textarea><br>
+      <input type="submit" name="submit" value="<%= action %>">
+    </form>
+  </body>
+</html>

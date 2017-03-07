@@ -33,9 +33,10 @@ app.get('/', (request, response) => {
 app.get('/documents/', doc.list);
 app.get('/documents/create', doc.createView);
 app.post('/documents/create', doc.create);
+
+app.get('/documents/:id', doc.view);
 app.get('/documents/:id/edit', doc.editView);
 app.post('/documents/:id/edit', doc.edit);
-app.get('/documents/:id', doc.view);
 
 // // Page
 // app.get('/sites/:sid/pages', page.list);
@@ -63,3 +64,4 @@ app.listen( port, success );
 
 
 // Generic Error Handling (TODO)
+``
