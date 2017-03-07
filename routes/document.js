@@ -2,19 +2,19 @@ var Promise = require('bluebird');
 var marked = require('marked');
 var Doc = require('../models/document');
 
-exports.list = (request, response) => {
+exports.list = (request, response, next) => {
   Doc.find({session: request.sessionID})
   .then(docs => {
     response.render('document/list', {title: "Documents", items: docs});
   })
-  .catch(error => {console.error(error);response.status(500).send('Internal error')});
+  .catch(next);
 };
 
-exports.createView = (request, response) => {
+exports.createView = (request, response, next) => {
   response.render('document/create');
 };
 
-exports.create = (request, response) => {
+exports.create = (request, response, next) => {
   Doc.create({
     body: request.body.body,
     session: request.sessionID
@@ -22,25 +22,25 @@ exports.create = (request, response) => {
   .then( doc => {
     response.redirect(`/documents/${doc._id}`);
   })
-  .catch(error => {console.error(error);response.status(500).send('Internal error')});
+  .catch(next);
 };
 
-exports.editView = (request, response) => {
+exports.editView = (request, response, next) => {
   Doc.findById(request.params.id)
   .then(doc => {
     if(doc.session !== request.sessionID){
-      return Promise.reject('You don\'t have permission to edit this document. <a href="javascript:history.back()">Back</a>');
+      return Promise.reject({status: 403});
     }
     response.render('document/edit', {body: doc.body});
   })
-  .catch(error => {console.error(error);response.status(500).send('Internal error')});
+  .catch(next);
 };
 
-exports.edit = (request, response) => {
+exports.edit = (request, response, next) => {
   Doc.findById(request.params.id)
   .then(doc => {
     if(doc.session !== request.sessionID){
-      return Promise.reject('You don\'t have permission to edit this document. <a href="javascript:history.back()">Back</a>');
+      return Promise.reject({status: 403});
     }
     doc.body = request.body.body;
     return doc.save();
@@ -48,10 +48,10 @@ exports.edit = (request, response) => {
   .then(doc => {
     response.redirect(`/documents/${doc._id}`);
   })
-  .catch(error => {console.error(error);response.status(500).send('Internal error')});
+  .catch(next);
 };
 
-exports.view = (request, response) => {
+exports.view = (request, response, next) => {
   let docId;
   let isOwner = false;
   Doc.findById(request.params.id)
@@ -68,6 +68,6 @@ exports.view = (request, response) => {
       id: docId
     });
   })
-  .catch(error => {console.error(error);response.status(500).send('Internal error')});
+  .catch(next);
   // TODO: 404 for non-existant pages
 };

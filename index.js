@@ -5,6 +5,7 @@ var path = require('path');
 var session = require('express-session');
 
 var db = require('./database');
+var error = require('./error');
 var env = require('./env/environment');
 var doc = require('./routes/document');
 
@@ -16,20 +17,16 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
 app.use(session({
   resave: false, // don't save session if unmodified
   saveUninitialized: true, // always create a session
   secret: env.sessionSecret
 }));
 
-app.use( (request, response, next) => {
-  console.log(`${request.method} ${request.path} ${JSON.stringify(request.params)}`);
-  next();
-});
 
 // Static files
 app.use('/', express.static('public'));
+
 
 // General
 app.get('/', (request, response) => {
@@ -47,7 +44,11 @@ app.get('/documents/:id/edit', doc.editView);
 app.post('/documents/:id/edit', doc.edit);
 
 
-// Server
+// Errors
+app.use(error.handle);
+
+
+// Start Server
 const port = process.env.PORT || 3000;
 const success = () => { console.log(`Listening at port ${port}`); };
 app.listen( port, success );
