@@ -1,7 +1,11 @@
 <%- include('../partials/header', locals) %>
   <form action="/documents/create" method="post">
-    <textarea name="body" rows="8" cols="80"></textarea><br>
-    <input type="submit" name="submit" value="Publish">
-    <a href="/">Back</a>
+    <div class="composer">
+      <textarea name="body" rows="12" autofocus required></textarea>
+    </div>
+    <div class="actionbar">
+      <input type="submit" name="submit" value="Publish" class="button">
+      <a href="/" class="button-link">Back</a>
+    </div>
   </form>
 <%- include('../partials/footer', locals) %>
