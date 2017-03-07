@@ -118,7 +118,7 @@ small {
   padding: 1.5em;
   width: 100%;
   outline: none;
-  border: .125em solid #EEE;
+  border: .25em solid #EFEFEF;
 }
 
 .button-link {
