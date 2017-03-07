@@ -1,0 +1,8 @@
+<%- include('../partials/header', locals) %>
+  <form action="./edit" method="post">
+    <textarea name="body" rows="8" cols="80"><%= body %></textarea><br>
+    <input type="submit" name="submit" value="Save">
+    <a href=".">view</a>
+    <a href="/documents/">list</a>
+  </form>
+<%- include('../partials/footer', locals) %>

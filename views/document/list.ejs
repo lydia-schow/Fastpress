@@ -1,0 +1,13 @@
+<%- include('../partials/header', locals) %>
+  <h1><%= title %></h1>
+  <ul>
+    <li><a href="./create">CREATE ONE</a></li>
+    <% items.forEach( item => { %>
+      <li>
+        <a href="./<%= item._id %>">
+           <%= item._id %>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
+<%- include('../partials/footer', locals) %>

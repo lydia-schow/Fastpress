@@ -5,13 +5,13 @@ var Doc = require('../models/document');
 exports.list = (request, response) => {
   Doc.find({session: request.sessionID})
   .then(docs => {
-    response.render('list', {title: "Documents", items: docs});
+    response.render('document/list', {title: "Documents", items: docs});
   })
   .catch(error => {console.error(error);response.status(500).send('Internal error')});
 };
 
 exports.createView = (request, response) => {
-  response.render('document-create');
+  response.render('document/create');
 };
 
 exports.create = (request, response) => {
@@ -31,7 +31,7 @@ exports.editView = (request, response) => {
     if(doc.session !== request.sessionID){
       return Promise.reject('You don\'t have permission to edit this document. <a href="javascript:history.back()">Back</a>');
     }
-    response.render('document-edit', {body: doc.body});
+    response.render('document/edit', {body: doc.body});
   })
   .catch(error => {console.error(error);response.status(500).send('Internal error')});
 };
@@ -57,9 +57,9 @@ exports.view = (request, response) => {
     return Promise.promisify(marked)(doc.body); // promisify then invoke
   })
   .then(html => {
-    response.render('document-view', {
+    response.render('document/view', {
       title: "Document",
-      body: html
+      html: html
     });
   })
   .catch(error => {console.error(error);response.status(500).send('Internal error')});

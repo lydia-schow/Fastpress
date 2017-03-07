@@ -1,0 +1,155 @@
+/* Reset */
+
+html, body, p, h1, h2, h3, img {
+  margin: 0;
+  padding: 0;
+}
+
+/* Page */
+
+html {
+  background: #FAFAFA;
+}
+
+body {
+  background: #FFF;
+  color: #333;
+  font-family: "Noto Serif", serif;
+  font-size: 1.125em;             /* 16px --> 18px */
+  margin: 3.75em auto;            /* = 60px / 16px */
+  max-width: 30em;                /* = 576px / 16px */
+  padding: 3.75em 4.5em 2.25em;   /* = 36px / 16px */
+  position: relative;
+}
+
+/* Typography */
+
+p {
+  font-size: 1em;        /* = 16px / 16px */
+  hyphens: auto;
+  line-height: 1.5em;    /* = 24px / 16px */
+  margin-bottom: 1.5em;  /* = 24px / 16px */
+}
+
+h1 {
+  font-size: 2.618em;    /* = 42px / 16px */
+  line-height: 1.143em;  /* = 48px / 42px */
+  margin-bottom: .8567em; /* = 24px / 42px */
+}
+
+h2 {
+  font-size: 1.618em;    /* = 26px / 16px */
+  line-height: 1.4em;    /* = 36px / 26px */
+  margin: 1.385em 0 .4635em;   /* = 12px / 26px */
+}
+
+h3 {
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 1.5em;
+  margin: 1.5em 0 1.5em;
+}
+
+h2 + h3 {
+  margin: .75em 0 .75em;
+}
+
+h1 + h4 {
+  font-size: .618em;    /* = 9.888px / 16px */
+  font-weight: normal;
+  line-height: 1.214em;    /* = 24px / 9.888px */
+  letter-spacing: .175em;
+  margin: -1.82em 0 3.034em;   /* = 12px / 9.888px */
+  text-transform: uppercase;
+}
+
+pre {
+  overflow-x: scroll;
+}
+
+/* Images */
+
+img {
+  background: #EEE;
+  height: auto;
+  width: 100%;
+}
+
+img + p {
+  margin-top: 1.5em;
+}
+
+.fullwidth {
+  margin: 3em -4.5em;
+  overflow-x:scroll;
+}
+
+/* Table */
+
+table {
+  border-collapse: collapse;
+  margin-bottom: 1em;
+  text-align: left;
+  width: 100%;
+}
+
+.fullwidth table {
+  left: 5%;
+  position: relative;
+  overflow-x: scroll;
+  white-space: nowrap;
+  width: 95%;
+}
+
+thead {
+  border-bottom: 1px solid #eee;
+}
+
+tfoot {
+  border-top: 1px solid #eee;
+}
+
+th {
+  color: #000;
+  font-size: .618em;   /* = 16px / 9.888px */
+  font-weight: normal;
+  letter-spacing: .15em;
+  line-height: 1.213em; /* = 24px / 9.888px */
+  padding: .8090em 1.213em .6067em 0; /* 6px / 9.888px */
+  text-transform: uppercase;
+}
+
+td {
+  line-height: 1em;
+  padding: .25em .75em .25em 0;
+}
+
+tbody tr:first-child td {
+  padding-top: .75em;
+}
+
+/* Break Points */
+@media (max-width: 700px){
+  body { margin-top: 0; }
+}
+
+@media (max-width: 575px){
+  html { background: #FFF; }
+  body {
+    margin: 0;
+    padding: 2.25em;
+  }
+  .fullwidth {
+    margin: 1.5em -2.25em;
+  }
+}
+
+@media (max-width: 350px){
+  body {
+    margin: 0;
+    padding: 1.5em 1.5em 0;
+  }
+  .fullwidth {
+    margin: 1.em -1.5em;
+  }
+}
