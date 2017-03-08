@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var db = mongoose.connect('mongodb://localhost/fastpress')
+mongoose.connect('mongodb://localhost/fastpress')
   .then( () => {
     console.log('Connected to database');
   })
@@ -8,4 +8,4 @@ var db = mongoose.connect('mongodb://localhost/fastpress')
     console.error(`Database connection failed:\n${error}`);
   });
 
-module.exports = db;
+module.exports = mongoose.connection;

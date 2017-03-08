@@ -1,15 +1,16 @@
-var Promise = require('bluebird');
-var bodyParser = require('body-parser');
-var express = require('express');
-var path = require('path');
-var session = require('express-session');
+const Promise = require('bluebird');
+const bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
-var db = require('./database');
-var error = require('./error');
-var env = require('./env/environment');
-var doc = require('./routes/document');
+const db = require('./database');
+const error = require('./error');
+const env = require('./env/environment');
+const doc = require('./routes/document');
 
-var app = express();
+const app = express();
 
 
 // Config
@@ -20,7 +21,8 @@ app.use(bodyParser.json());
 app.use(session({
   resave: false, // don't save session if unmodified
   saveUninitialized: true, // always create a session
-  secret: env.sessionSecret
+  secret: env.sessionSecret,
+  store: new MongoStore({ mongooseConnection: db })
 }));
 
 
