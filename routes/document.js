@@ -1,6 +1,6 @@
 var Promise = require('bluebird');
-var marked = require('marked');
 var Doc = require('../models/document');
+var markdown = require('markdown-it')();
 
 exports.list = (request, response, next) => {
   Doc.find({session: request.sessionID})
@@ -17,6 +17,7 @@ exports.createView = (request, response, next) => {
 exports.create = (request, response, next) => {
   Doc.create({
     body: request.body.body,
+    html: markdown.render(request.body.body),
     session: request.sessionID
   })
   .then( doc => {
@@ -43,6 +44,7 @@ exports.edit = (request, response, next) => {
       return Promise.reject({status: 403});
     }
     doc.body = request.body.body;
+    doc.html = markdown.render(request.body.body)
     return doc.save();
   })
   .then(doc => {
@@ -52,20 +54,17 @@ exports.edit = (request, response, next) => {
 };
 
 exports.view = (request, response, next) => {
-  let docId;
-  let isOwner = false;
   Doc.findById(request.params.id)
   .then(doc => {
-    isOwner = doc.session === request.sessionID;
-    docId = doc._id;
-    return Promise.promisify(marked)(doc.body); // promisify then invoke
-  })
-  .then(html => {
-    response.render('document/view', {
-      title: "Document",
-      html: html,
-      isOwner: isOwner,
-      id: docId
+    if(!doc.html){
+      doc.html = markdown.render(doc.body);
+      doc.save();
+    }
+    return response.render('document/view', {
+      title: "Document - Fastpress",
+      html: doc.html,
+      id: doc._id,
+      isOwner: doc.session === request.sessionID
     });
   })
   .catch(next);

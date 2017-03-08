@@ -54,16 +54,18 @@ h1 {
   font-size: 2.618em;    /* = 42px / 16px */
   line-height: 1.143em;  /* = 48px / 42px */
   margin-bottom: .8567em; /* = 24px / 42px */
-}
-
-h2:first-child {
-  margin-top: .4635em;
+  hyphens: auto;
 }
 
 h2 {
   font-size: 1.618em;    /* = 26px / 16px */
   line-height: 1.4em;    /* = 36px / 26px */
   margin: 1.385em 0 .4635em;   /* = 12px / 26px */
+  hyphens: auto;
+}
+
+h2:first-child {
+  margin-top: .4635em;
 }
 
 h3 {
@@ -71,19 +73,11 @@ h3 {
   font-weight: bold;
   line-height: 1.5em;
   margin: 1.5em 0 1.5em;
+  hyphens: auto;
 }
 
 h2 + h3 {
   margin: .75em 0 .75em;
-}
-
-h1 + h4 {
-  font-size: .618em;    /* = 9.888px / 16px */
-  font-weight: normal;
-  line-height: 1.214em;    /* = 24px / 9.888px */
-  letter-spacing: .175em;
-  margin: -1.82em 0 3.034em;   /* = 12px / 9.888px */
-  text-transform: uppercase;
 }
 
 pre {
@@ -140,6 +134,7 @@ small {
   box-shadow: 0 .25em #2980b9;
   color: #FFF;
   cursor: pointer;
+  display: inline-block;
   font-size: 1em;
   padding: .75em 1.25em .7em;
   outline: none;
