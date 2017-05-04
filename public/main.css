@@ -24,10 +24,6 @@ body {
   padding: 1.5rem;
 }
 
-.center {
-  text-align: center;
-}
-
 .tagline {
   font-weight: normal;
   font-size: 1em;
@@ -92,35 +88,10 @@ small {
   color: #888;
 }
 
-/* Main Page Button */
-
-.button {
-  background-color: #3498db;
-  border: none;
-  border-radius: .25em;
-  box-shadow: 0 .25em #2980b9;
-  color: #FFF;
-  cursor: pointer;
-  font-size: 1em;
-  padding: .75em 1.25em .7em;
-  outline: none;
-}
-
-.button:hover {
-  background-color: #41A5E8;);
-  text-decoration: none;
-}
-
-.button:active,
-.buton.active {
-  box-shadow: 0 .125em #2980b9;
-  transform: translateY(0.125em);
-}
-
 /* Forms */
 
 .actionbar {
-  padding: 1.5em;
+  padding: 1.5em 0;
 }
 
 .composer textarea {
@@ -135,7 +106,7 @@ small {
   border: .25rem solid #EFEFEF;
 }
 
-.button-link {
+.button.link {
   display: inline-block;
   cursor: pointer;
   font-size: 1em;
@@ -143,29 +114,28 @@ small {
   letter-spacing: 0.025em;
 }
 
-.button-link + .button-link {
+.button + .button {
   margin-left: 1rem;
 }
 
-.button {
-  background-color: #3498db;
+.button.primary {
+  background-color: #3498DB;
   border: none;
   border-radius: .25em;
-  box-shadow: 0 .25em #2980b9;
+  box-shadow: 0 .25em #2980B9;
   color: #FFF;
   cursor: pointer;
-  display: inline-block;
   font-size: 1em;
+  padding: .75em 1.25em .7em;
   outline: none;
 }
 
-.button:hover {
+.button.primary:hover {
   background-color: #41A5E8;);
   text-decoration: none;
 }
 
-.button:active,
-.buton.active {
+.button.primary:active {
   box-shadow: 0 .125em #2980b9;
   transform: translateY(0.125em);
 }
@@ -224,6 +194,15 @@ pre {
   line-height: 1.5;
 }
 
+blockquote {
+  position: relative;
+  color: #777;
+  margin: 0;
+  padding: 0;
+  padding-left: 1.5rem;
+  border-left: .25rem solid #EEE;
+}
+
 /* Jumbotron */
 
 .jumbotron {
@@ -231,6 +210,7 @@ pre {
   position: relative;
   text-align: center;
   overflow: hidden;
+  margin: -1.5rem;
 }
 
 .center {
