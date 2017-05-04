@@ -11,23 +11,17 @@ html, body, p, h1, h2, h3, img {
 
 /* Page */
 
-html {
-  background: #FAFAFA;
-}
-
 body {
   background: #FFF;
   color: #333;
   font-family: "Noto Serif", serif;
-  font-size: 1.125em;             /* 16px --> 18px */
-  margin: 3.5em auto;            /* = 60px / 16px */
-  max-width: 35em;                /* = 576px / 16px */
-  padding: 3.5em 4em;   /* = 36px / 16px */
+  font-size: 1.125em; /* 16px --> 18px */
   position: relative;
-}
-
-.nopadding {
-  margin: -3.5em -4em;
+  line-height: 1.5;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 35em;
+  padding: 1.5rem;
 }
 
 .center {
@@ -85,12 +79,13 @@ pre {
 }
 
 a {
-  color: #3498db;
+  color: #3498DB;
   text-decoration: none;
+  border-bottom: .08rem solid #EEE;
 }
 
 a:hover {
-  text-decoration: underline;
+  border-color: #3498DB;
 }
 
 small {
@@ -105,26 +100,26 @@ small {
 
 .composer textarea {
   font-family: "Noto Serif", serif;
-  font-size: 1em;
-  line-height: 1.5em;
+  font-size: 1rem;
+  line-height: 1.5rem;
 
   display: block;
-  padding: 1.5em;
+  padding: 1.5rem;
   width: 100%;
   outline: none;
-  border: .25em solid #EFEFEF;
+  border: .25rem solid #EFEFEF;
 }
 
 .button-link {
+  display: inline-block;
   cursor: pointer;
   font-size: 1em;
-  padding: .75em 1.25em .7em;
   text-transform: uppercase;
   letter-spacing: 0.025em;
 }
 
 .button-link + .button-link {
-  padding-left: .25em;
+  margin-left: 1rem;
 }
 
 .button {
@@ -136,7 +131,6 @@ small {
   cursor: pointer;
   display: inline-block;
   font-size: 1em;
-  padding: .75em 1.25em .7em;
   outline: none;
 }
 
@@ -199,28 +193,28 @@ tbody tr:first-child td {
   padding-top: .75em;
 }
 
-/* Break Points */
-@media (max-width: 700px){
-  body { margin-top: 0; }
+pre {
+  background: #FAFAFA;
+  padding: 2rem;
+  line-height: 1.5;
 }
 
-@media (max-width: 575px){
-  html { background: #FFF; }
-  body {
-    margin: 0;
-    padding: 2.25em;
-  }
-  .fullwidth {
-    margin: 1.5em -2.25em;
-  }
+/* Jumbotron */
+
+.jumbotron {
+  height: 100vh;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
 }
 
-@media (max-width: 350px){
-  body {
-    margin: 0;
-    padding: 1.5em 1.5em 0;
-  }
-  .fullwidth {
-    margin: 1.em -1.5em;
-  }
+.center {
+  width: 100%;
+  max-width: 20rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
