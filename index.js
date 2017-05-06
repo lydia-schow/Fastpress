@@ -8,7 +8,7 @@ const MongoStore = require('connect-mongo')(session);
 const db = require('./database');
 const error = require('./error');
 const env = require('./env/environment');
-const doc = require('./routes/document');
+const doc = require('./controllers/document');
 
 const app = express();
 
@@ -27,35 +27,30 @@ app.use(session({
   store: new MongoStore({ mongooseConnection: db })
 }));
 
-
 // Static files
 app.use('/', express.static('public'));
-
 
 // General
 app.get('/', (request, response) => {
   response.render('index');
 });
 
-
 // Document
 app.get('/documents/', doc.list);
-app.get('/documents/create', doc.createView);
-app.post('/documents/create', doc.create);
-
+app.route('/documents/create')
+  .get(doc.createView)
+  .post(doc.create);
 app.get('/documents/:id', doc.view);
-app.get('/documents/:id/edit', doc.editView);
-app.post('/documents/:id/edit', doc.edit);
-
+app.route('/documents/create')
+  .get(doc.editView)
+  .post(doc.edit);
 
 // Errors
 app.use(error.handle);
-
 
 // Start Server
 const port = process.env.PORT || 3000;
 const success = () => { console.log(`Listening at port ${port}`); };
 app.listen( port, success );
-
 
 // Generic Error Handling (TODO)
