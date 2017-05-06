@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
+const helmet = require('helmet');
 const MongoStore = require('connect-mongo')(session);
 
 const db = require('./database');
@@ -11,6 +12,8 @@ const doc = require('./routes/document');
 
 const app = express();
 
+// Improve security
+app.use(helmet());
 
 // Config
 app.set('view engine', 'ejs');
