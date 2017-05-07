@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const router = require('express-promise-router')();
 const path = require('path');
 const session = require('express-session');
 const helmet = require('helmet');
@@ -31,22 +32,24 @@ app.use(session({
 app.use('/', express.static('public'));
 
 // General
-app.get('/', (request, response) => {
+router.get('/', (request, response) => {
   response.render('index');
 });
 
 // Document
-app.get('/documents/', doc.list);
-app.route('/documents/create')
+router.get('/documents/', doc.list);
+router.route('/documents/create')
   .get(doc.createView)
   .post(doc.create);
-app.get('/documents/:id', doc.view);
-app.route('/documents/create')
+router.get('/documents/:id', doc.view);
+router.route('/documents/create')
   .get(doc.editView)
   .post(doc.edit);
 
 // Errors
-app.use(error.handle);
+router.use(error.handle);
+
+app.use(router);
 
 // Start Server
 const port = process.env.PORT || 3000;
